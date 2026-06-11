@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Brand tokens — mirrored from the Meridian app (meridian-frontend/index.css)
+   so the landing page and product share one visual language.
+   Accent is the warm gold #c9a86a; #7eb8d4 is the cool "signal" blue used
+   for secondary glows / gradient mesh on the landing page.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-bg: #0a0d12;
+  --color-paper: #11161e;
+  --color-paper-2: #161c26;
+  --color-ink: #e8ecf2;
+  --color-ink-2: #8a93a3;
+  --color-ink-3: #5a6273;
+  --color-rule: #1f2733;
+  --color-rule-strong: #2a3340;
+  --color-accent: #c9a86a;
+  --color-accent-2: #dcc28a;
+  --color-accent-hover: #dcc28a;
+  --color-signal: #7eb8d4;
+  --color-gain: #5fb585;
+  --color-gain-soft: rgba(95, 181, 133, 0.12);
+  --color-loss: #d96b6b;
+  --color-loss-soft: rgba(217, 107, 107, 0.12);
+  --color-warn: #c9a86a;
+  --color-warn-soft: rgba(201, 168, 106, 0.1);
+  --color-on-accent: #1a1408;
+  --color-bg-blur: rgba(10, 13, 18, 0.85);
+
+  --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.02) inset, 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 24px rgba(0, 0, 0, 0.5);
+
+  --font-sans: "Inter Tight", "Inter", -apple-system, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* offset anchored scroll for the sticky navbar */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  overflow-x: hidden;
+}
+
+/* ----------------------------- Glassmorphism ----------------------------- */
+.glass {
+  background: rgba(22, 28, 38, 0.55);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 16px 48px rgba(0, 0, 0, 0.45);
+}
+
+.glass-soft {
+  background: rgba(17, 22, 30, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ----------------------- Hero gradient mesh + grain ---------------------- */
+/* Slow-moving multi-radial gradient. Pure CSS, GPU-friendly. */
+.gradient-mesh {
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  background:
+    radial-gradient(40% 45% at 20% 25%, rgba(201, 168, 106, 0.18), transparent 60%),
+    radial-gradient(35% 40% at 80% 20%, rgba(126, 184, 212, 0.16), transparent 60%),
+    radial-gradient(45% 50% at 65% 75%, rgba(201, 168, 106, 0.1), transparent 60%),
+    radial-gradient(40% 45% at 30% 80%, rgba(126, 184, 212, 0.1), transparent 60%);
+  filter: blur(40px);
+  animation: meshDrift 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes meshDrift {
+  0% {
+    transform: translate3d(-4%, -2%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, 2%, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-2%, 4%, 0) scale(1.03);
+  }
+}
+
+/* faint grid lines behind hero, evokes a trading terminal */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, black 30%, transparent 75%);
+}
+
+/* --------------------------- Marquee (social bar) ------------------------ */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ------------------------------- Misc ------------------------------------ */
+.text-gradient-gold {
+  background: linear-gradient(120deg, var(--color-accent-2) 0%, var(--color-accent) 55%, var(--color-signal) 130%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* respect reduced-motion preference everywhere */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
