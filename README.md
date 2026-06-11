@@ -52,19 +52,17 @@ src/
     Features.tsx           # 2x2 feature grid w/ Lucide icons (strategy-centric copy)
     HowItWorks.tsx         # 3-step flow w/ connector line
     PricingCards.tsx       # 0/10/40 fee cards, hover scale
-    WaitlistForm.tsx       # real POST to the waitlist API
+    TallyPopup.astro       # Meridian-styled button that opens the Tally form in a popup
     Reveal.tsx             # reusable fade+slide-up-on-scroll wrapper
 ```
 
-## Waitlist API
+## Waitlist form
 
-`WaitlistForm.tsx` POSTs `{ email }` as JSON to:
+The waitlist section keeps Meridian's own gold "Join the waitlist" button (`TallyPopup.astro`) and opens a [Tally.so](https://tally.so) form in a popup overlay — Tally's officially-supported embed mode. The button carries `data-tally-open` + layout attributes, and Tally's `embed.js` binds them and handles the form's own session and submission. This keeps the site's styling intact while letting Tally own storage/notifications.
 
-```
-https://api.getmeridianmarkets.com/waitlist
-```
+To point at a different form, change `FORM_ID` in `TallyPopup.astro` (currently `aQl4Wq`). To tweak the popup (size, slide-over vs modal, overlay), adjust the `data-tally-*` attributes on the button.
 
-On a 2xx response it shows the success state ("You're on the list. We'll be in touch."); any non-2xx or network failure shows a graceful inline error. There is no third-party embed and no mock data — it hits the API directly and the backend handles storage.
+> **Form theming:** the popup's internal colors (input, button, background) are controlled in Tally's own form designer (Design settings), not from this site — pick a dark theme there so the popup matches.
 
 ## Images
 

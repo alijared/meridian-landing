@@ -6,7 +6,7 @@ import ProblemCards from "../components/ProblemCards.tsx";
 import Features from "../components/Features.tsx";
 import HowItWorks from "../components/HowItWorks.tsx";
 import PricingCards from "../components/PricingCards.tsx";
-import WaitlistForm from "../components/WaitlistForm.tsx";
+import TallyPopup from "../components/TallyPopup.astro";
 import Reveal from "../components/Reveal.tsx";
 
 const marqueeItems = [
@@ -186,7 +186,7 @@ const marqueeItems = [
         </Reveal>
 
         <div class="mt-10">
-          <WaitlistForm client:visible />
+          <TallyPopup />
         </div>
       </div>
     </section>
