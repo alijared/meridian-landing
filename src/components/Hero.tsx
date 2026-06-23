@@ -1,10 +1,5 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
-/**
- * Hero content with sequential fade-in on load (stagger ~150ms per element).
- * The animated background lives in the .astro markup behind this island;
- * this component owns the foreground text, CTAs, and the CSS product mock.
- */
 export default function Hero() {
   const reduce = useReducedMotion();
 
@@ -45,17 +40,17 @@ export default function Hero() {
         variants={item}
         className="mt-6 max-w-3xl font-serif text-4xl font-semibold leading-[1.08] tracking-tight text-ink sm:text-5xl md:text-6xl"
       >
-        Build strategies.{" "}
-        <span className="text-gradient-gold">Follow the best.</span> Execute
-        automatically.
+        The social network for{" "}
+        <span className="text-gradient-gold">investing strategies</span>
       </motion.h1>
 
       <motion.p
         variants={item}
         className="mt-6 max-w-2xl text-base leading-relaxed text-ink-2 sm:text-lg"
       >
-        Meridian is the first platform to combine a strategy builder, a ranked
-        strategy marketplace, and live execution — all in one place.
+        Start with strategies already tested, ranked, and validated by the
+        community. Follow top investors, join investing communities, and invest
+        alongside strategies you trust.
       </motion.p>
 
       <motion.div
@@ -81,14 +76,13 @@ export default function Hero() {
           </svg>
         </a>
         <a
-          href="#how-it-works"
+          href="#features"
           className="inline-flex h-12 w-full items-center justify-center rounded-lg border border-rule-strong bg-paper/40 px-7 text-sm font-semibold text-ink backdrop-blur transition-colors hover:border-rule-strong hover:bg-paper-2 sm:w-auto"
         >
-          See how it works
+          Explore the network
         </a>
       </motion.div>
 
-      {/* Product UI glimpse — pure CSS/HTML, no image. */}
       <motion.div
         variants={item}
         className="relative mt-16 w-full max-w-3xl"
@@ -99,31 +93,57 @@ export default function Hero() {
   );
 }
 
-/**
- * A leaderboard + strategy-insight card styled to look like the real Meridian
- * product surface. Static, decorative — not real data.
- *
- * Left: strategies ranked by 30d return (all positive — it's a "best
- * performers" board). Right: an insight panel for the currently-selected
- * (highlighted) strategy — followers, capital, total profit, avg trade, etc.
- */
+const FEED_CARDS = [
+  {
+    initials: "NO",
+    color: "bg-accent/20 text-accent",
+    creator: "Naomi Okafor",
+    followers: "3.1k",
+    strategy: "Adaptive Momentum",
+    ret: "+47.2%",
+    risk: "med",
+    sparkPath: "M0 28 L12 24 L24 26 L36 18 L48 20 L60 12 L72 14 L84 6 L96 8 L108 2 L120 0",
+    fillPath: "M0 28 L12 24 L24 26 L36 18 L48 20 L60 12 L72 14 L84 6 L96 8 L108 2 L120 0 L120 32 L0 32 Z",
+  },
+  {
+    initials: "DR",
+    color: "bg-signal/20 text-signal",
+    creator: "Daniel Reyes",
+    followers: "2.4k",
+    strategy: "Volatility Harvest",
+    ret: "+34.6%",
+    risk: "high",
+    sparkPath: "M0 20 L12 22 L24 16 L36 18 L48 10 L60 14 L72 8 L84 12 L96 4 L108 6 L120 2",
+    fillPath: "M0 20 L12 22 L24 16 L36 18 L48 10 L60 14 L72 8 L84 12 L96 4 L108 6 L120 2 L120 32 L0 32 Z",
+  },
+  {
+    initials: "PA",
+    color: "bg-gain/20 text-gain",
+    creator: "Priya Anand",
+    followers: "1.7k",
+    strategy: "Sector Rotation",
+    ret: "+21.8%",
+    risk: "med",
+    sparkPath: "M0 24 L12 26 L24 20 L36 22 L48 14 L60 18 L72 10 L84 14 L96 8 L108 10 L120 4",
+    fillPath: "M0 24 L12 26 L24 20 L36 22 L48 14 L60 18 L72 10 L84 14 L96 8 L108 10 L120 4 L120 32 L0 32 Z",
+  },
+];
+
+const TRENDING = [
+  { rank: 1, name: "Adaptive Momentum", creator: "Naomi Okafor", ret: "+47.2%" },
+  { rank: 2, name: "Volatility Harvest", creator: "Daniel Reyes", ret: "+34.6%" },
+  { rank: 3, name: "Sector Rotation", creator: "Priya Anand", ret: "+21.8%" },
+  { rank: 4, name: "Iron Butterfly · SPY", creator: "Marcus Lindqvist", ret: "+12.4%" },
+  { rank: 5, name: "Covered Call · QQQ", creator: "Hannah Cole", ret: "+8.3%" },
+];
+
+const riskColor: Record<string, string> = {
+  low: "text-gain bg-gain-soft",
+  med: "text-warn bg-warn-soft",
+  high: "text-loss bg-loss-soft",
+};
+
 function ProductMock() {
-  const rows = [
-    { rank: 1, name: "Adaptive Momentum", author: "Naomi Okafor", ret: "+47.2%", risk: "med", followers: "3.1k", selected: true },
-    { rank: 2, name: "Volatility Harvest", author: "Daniel Reyes", ret: "+34.6%", risk: "high", followers: "2.4k", selected: false },
-    { rank: 3, name: "Sector Rotation", author: "Priya Anand", ret: "+21.8%", risk: "med", followers: "1.7k", selected: false },
-    { rank: 4, name: "Iron Butterfly · SPY", author: "Marcus Lindqvist", ret: "+12.4%", risk: "low", followers: "1.1k", selected: false },
-    { rank: 5, name: "Covered Call · QQQ", author: "Hannah Cole", ret: "+8.3%", risk: "low", followers: "920", selected: false },
-  ];
-
-  const riskColor: Record<string, string> = {
-    low: "text-gain bg-gain-soft",
-    med: "text-warn bg-warn-soft",
-    high: "text-loss bg-loss-soft",
-  };
-
-  const selected = rows.find((r) => r.selected) ?? rows[0];
-
   return (
     <div className="glass overflow-hidden rounded-2xl text-left">
       {/* window chrome */}
@@ -139,7 +159,7 @@ function ProductMock() {
             <path d="M1 11 L 21 11" stroke="currentColor" strokeWidth="1.6" />
             <path d="M5 6.5 Q 11 11 5 15.5" stroke="currentColor" strokeWidth="1.6" fill="none" />
           </svg>
-          Live leaderboard · 30d
+          Strategy feed
         </div>
         <span className="inline-flex items-center gap-1 rounded-full bg-gain-soft px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gain">
           <span className="h-1.5 w-1.5 rounded-full bg-gain" />
@@ -147,119 +167,90 @@ function ProductMock() {
         </span>
       </div>
 
-      <div className="grid gap-0 sm:grid-cols-[1.7fr_1fr]">
-        {/* leaderboard */}
-        <div>
-          {/* column headers */}
-          <div className="flex items-center gap-3 border-b border-white/5 px-5 py-2 text-[10px] font-medium uppercase tracking-wide text-ink-3">
-            <span className="w-4">#</span>
-            <span className="flex-1">Strategy</span>
-            <span className="hidden w-12 text-right sm:inline">Risk</span>
-            <span className="w-14 text-right">30d</span>
-          </div>
+      {/* feed tabs */}
+      <div className="flex items-center gap-0 border-b border-white/5 px-5">
+        <button className="border-b-2 border-accent px-4 py-2.5 text-xs font-semibold text-accent">
+          Trending
+        </button>
+        <button className="border-b-2 border-transparent px-4 py-2.5 text-xs font-medium text-ink-3">
+          Top Performers
+        </button>
+        <button className="border-b-2 border-transparent px-4 py-2.5 text-xs font-medium text-ink-3">
+          Following
+        </button>
+      </div>
 
-          <div className="divide-y divide-white/5">
-            {rows.map((r) => (
-              <div
-                key={r.rank}
-                className={`flex items-center gap-3 px-5 py-3 ${
-                  r.selected ? "bg-accent/[0.07]" : ""
-                }`}
-              >
-                <span
-                  className={`w-4 font-mono text-xs ${r.selected ? "text-accent" : "text-ink-3"}`}
-                >
-                  {r.rank}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-ink">{r.name}</p>
-                  <p className="truncate text-xs text-ink-3">
-                    by {r.author} · {r.followers} following
-                  </p>
+      <div className="grid gap-0 sm:grid-cols-[1.6fr_1fr]">
+        {/* strategy feed cards */}
+        <div className="divide-y divide-white/5">
+          {FEED_CARDS.map((card) => (
+            <div key={card.creator} className="px-5 py-4">
+              <div className="flex items-start gap-3">
+                {/* avatar */}
+                <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold ${card.color}`}>
+                  {card.initials}
                 </div>
-                <span
-                  className={`hidden w-12 justify-end sm:flex`}
-                >
-                  <span
-                    className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${riskColor[r.risk]}`}
-                  >
-                    {r.risk}
-                  </span>
-                </span>
-                <span className="w-14 text-right font-mono text-sm font-medium text-gain">
-                  {r.ret}
-                </span>
+                <div className="min-w-0 flex-1">
+                  {/* creator line */}
+                  <div className="flex items-center gap-2">
+                    <span className="truncate text-sm font-medium text-ink">{card.creator}</span>
+                    <span className="text-[10px] text-ink-3">·</span>
+                    <span className="text-[10px] text-ink-3">{card.followers} followers</span>
+                  </div>
+                  {/* strategy name + performance */}
+                  <div className="mt-1 flex items-center gap-2">
+                    <span className="truncate text-sm font-semibold text-ink">{card.strategy}</span>
+                    <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${riskColor[card.risk]}`}>
+                      {card.risk}
+                    </span>
+                  </div>
+                  {/* sparkline + stats row */}
+                  <div className="mt-2.5 flex items-end justify-between gap-3">
+                    <svg viewBox="0 0 120 32" className="h-8 w-24 shrink-0" preserveAspectRatio="none" aria-hidden="true">
+                      <defs>
+                        <linearGradient id={`spark-${card.initials}`} x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="rgba(95,181,133,0.3)" />
+                          <stop offset="100%" stopColor="rgba(95,181,133,0)" />
+                        </linearGradient>
+                      </defs>
+                      <path d={card.fillPath} fill={`url(#spark-${card.initials})`} />
+                      <path d={card.sparkPath} fill="none" stroke="#5fb585" strokeWidth="1.5" />
+                    </svg>
+                    <span className="font-mono text-base font-semibold text-gain">{card.ret}</span>
+                    <div className="flex items-center gap-2">
+                      <button className="rounded-md border border-rule-strong px-2.5 py-1 text-[10px] font-semibold text-ink-2 transition-colors hover:border-ink-3 hover:text-ink">
+                        Follow
+                      </button>
+                      <button className="rounded-md bg-accent px-2.5 py-1 text-[10px] font-semibold text-on-accent transition-colors hover:bg-accent-2">
+                        Copy
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* trending sidebar (desktop only) */}
+        <div className="hidden flex-col border-l border-white/5 sm:flex">
+          <div className="border-b border-white/5 px-4 py-3">
+            <p className="text-xs font-semibold uppercase tracking-wide text-ink-3">Trending this week</p>
+          </div>
+          <div className="divide-y divide-white/5">
+            {TRENDING.map((t) => (
+              <div key={t.rank} className="flex items-center gap-3 px-4 py-2.5">
+                <span className="w-4 font-mono text-xs text-ink-3">{t.rank}</span>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-xs font-medium text-ink">{t.name}</p>
+                  <p className="truncate text-[10px] text-ink-3">by {t.creator}</p>
+                </div>
+                <span className="font-mono text-xs font-medium text-gain">{t.ret}</span>
               </div>
             ))}
           </div>
         </div>
-
-        {/* strategy insight panel — for the selected strategy */}
-        <div className="hidden flex-col border-l border-white/5 p-5 sm:flex">
-          <div className="flex items-start justify-between gap-2">
-            <div className="min-w-0">
-              <p className="truncate text-sm font-semibold text-ink">
-                {selected.name}
-              </p>
-              <p className="truncate text-xs text-ink-3">by {selected.author}</p>
-            </div>
-            <span
-              className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${riskColor[selected.risk]}`}
-            >
-              {selected.risk} risk
-            </span>
-          </div>
-
-          <p className="mt-3 font-mono text-2xl font-semibold text-gain">
-            {selected.ret}
-            <span className="ml-1 align-middle text-[10px] font-medium uppercase tracking-wide text-ink-3">
-              30d
-            </span>
-          </p>
-
-          {/* equity curve for this strategy */}
-          <svg
-            viewBox="0 0 200 64"
-            className="mt-3 h-16 w-full"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <defs>
-              <linearGradient id="spark" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="rgba(95,181,133,0.35)" />
-                <stop offset="100%" stopColor="rgba(95,181,133,0)" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M0 52 L20 48 L40 50 L60 40 L80 42 L100 30 L120 34 L140 20 L160 24 L180 12 L200 6 L200 64 L0 64 Z"
-              fill="url(#spark)"
-            />
-            <path
-              d="M0 52 L20 48 L40 50 L60 40 L80 42 L100 30 L120 34 L140 20 L160 24 L180 12 L200 6"
-              fill="none"
-              stroke="#5fb585"
-              strokeWidth="1.5"
-            />
-          </svg>
-
-          {/* strategy stats */}
-          <div className="mt-4 grid grid-cols-2 gap-x-3 gap-y-3">
-            <Stat label="Followers" value={selected.followers} />
-            <Stat label="Total profit" value="$1.2M" />
-            <Stat label="Avg trade" value="$3,400" />
-            <Stat label="30d volume" value="$8.6M" />
-          </div>
-        </div>
       </div>
-    </div>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <p className="text-[10px] uppercase tracking-wide text-ink-3">{label}</p>
-      <p className="mt-0.5 font-mono text-sm font-semibold text-ink">{value}</p>
     </div>
   );
 }

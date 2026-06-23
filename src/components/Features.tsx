@@ -1,5 +1,5 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { Wrench, Users, Trophy, Bot } from "lucide-react";
+import { UserPlus, Users, Share2, Trophy, Compass, Zap } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 interface Feature {
@@ -10,24 +10,34 @@ interface Feature {
 
 const FEATURES: Feature[] = [
   {
-    icon: Wrench,
-    title: "Strategy Builder",
-    body: "Start from proven templates like Iron Butterfly or build your own rules from scratch. No code required.",
+    icon: UserPlus,
+    title: "Follow Investors",
+    body: "Follow strategy creators and top performers. See their new strategies, returns, and activity in your feed.",
   },
   {
     icon: Users,
-    title: "Follow Strategies",
-    body: "Allocate capital to proven, automated strategies — you back the strategy, not the person. No subscriptions, no copying anyone's trades.",
+    title: "Investing Communities",
+    body: "Join public or private investing groups. Share strategies, discuss markets, and collaborate with like-minded investors.",
+  },
+  {
+    icon: Share2,
+    title: "Strategies as Social Objects",
+    body: "Strategies are shared, discussed, and remixed like content. Anyone can view a strategy's full history and copy it instantly.",
   },
   {
     icon: Trophy,
-    title: "Live Leaderboard",
-    body: "See top earners and the strategies behind them, ranked by real performance — return, risk-adjusted return, drawdown, and consistency.",
+    title: "Live Leaderboards",
+    body: "Public leaderboards ranked by real returns, risk-adjusted performance, drawdown, and consistency. No self-reported results.",
   },
   {
-    icon: Bot,
-    title: "Auto-Execution",
-    body: "Connect your brokerage and let Meridian execute your strategies automatically, 24/7.",
+    icon: Compass,
+    title: "Strategy Discovery",
+    body: "A personalized feed of strategies matched to your goals and risk profile, powered by community adoption and performance data.",
+  },
+  {
+    icon: Zap,
+    title: "One-Click Execution",
+    body: "Copy any strategy and start investing instantly. Meridian handles execution so you can go from discovery to deployment in seconds.",
   },
 ];
 
@@ -36,7 +46,7 @@ export default function Features() {
 
   const container: Variants = {
     hidden: {},
-    show: { transition: { staggerChildren: reduce ? 0 : 0.12 } },
+    show: { transition: { staggerChildren: reduce ? 0 : 0.1 } },
   };
 
   const item: Variants = {
@@ -54,7 +64,7 @@ export default function Features() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "0px 0px -12% 0px" }}
-      className="grid gap-5 sm:grid-cols-2"
+      className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
     >
       {FEATURES.map((f) => {
         const Icon = f.icon;

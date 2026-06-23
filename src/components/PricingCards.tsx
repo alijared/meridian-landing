@@ -1,23 +1,43 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { Check } from "lucide-react";
 
-const CARDS = [
+interface Plan {
+  name: string;
+  figure: string;
+  period?: string;
+  description: string;
+  features: string[];
+  tone: "neutral" | "accent";
+}
+
+const PLANS: Plan[] = [
   {
-    figure: "0%",
-    label: "when strategies lose",
-    body: "No fee is ever charged on losses. If a strategy is down, you pay nothing.",
-    tone: "neutral" as const,
+    name: "Free",
+    figure: "$0",
+    description: "Learn, discover, and experiment. Full access to the social network, strategy feed, and paper trading.",
+    features: [
+      "Full access to feed, leaderboards, and groups",
+      "Discover, follow, and copy strategies",
+      "1 paper trading portfolio",
+      "Basic performance tracking",
+      "Join and create investing groups",
+    ],
+    tone: "neutral",
   },
   {
-    figure: "10%",
-    label: "performance fee on realized profits",
-    body: "A flat fee on realized profits only. No subscriptions, no monthly fees, no charge on the capital you deposit.",
-    tone: "accent" as const,
-  },
-  {
-    figure: "40%",
-    label: "of the performance fee rewards the creator",
-    body: "Of every performance fee, 40% goes to the strategy's creator and 60% to Meridian. Creators earn as their strategies attract capital and perform.",
-    tone: "neutral" as const,
+    name: "Pro",
+    figure: "$20",
+    period: "/mo",
+    description: "Deploy capital, run multiple experiments, and automate your investing workflow. Everything you need to invest seriously.",
+    features: [
+      "Everything in Free",
+      "Unlimited paper trading portfolios",
+      "Advanced strategy testing and comparison",
+      "Deeper analytics — risk, drawdown, attribution",
+      "Strategy versioning and iteration tools",
+      "Live trading",
+    ],
+    tone: "accent",
   },
 ];
 
@@ -26,7 +46,7 @@ export default function PricingCards() {
 
   const container: Variants = {
     hidden: {},
-    show: { transition: { staggerChildren: reduce ? 0 : 0.12 } },
+    show: { transition: { staggerChildren: reduce ? 0 : 0.14 } },
   };
 
   const item: Variants = {
@@ -44,29 +64,49 @@ export default function PricingCards() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "0px 0px -12% 0px" }}
-      className="grid gap-5 md:grid-cols-3"
+      className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2"
     >
-      {CARDS.map((c) => (
+      {PLANS.map((plan) => (
         <motion.div
-          key={c.figure}
+          key={plan.name}
           variants={item}
-          whileHover={reduce ? undefined : { scale: 1.03 }}
+          whileHover={reduce ? undefined : { scale: 1.02 }}
           transition={{ type: "spring", stiffness: 320, damping: 22 }}
-          className={`glass rounded-2xl p-8 text-center ${
-            c.tone === "accent"
+          className={`glass rounded-2xl p-8 ${
+            plan.tone === "accent"
               ? "border-accent/30 bg-accent/[0.06]"
               : ""
           }`}
         >
-          <p
-            className={`font-mono text-5xl font-semibold tracking-tight ${
-              c.tone === "accent" ? "text-accent" : "text-ink"
-            }`}
-          >
-            {c.figure}
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-ink-2">
+            {plan.name}
           </p>
-          <p className="mt-3 text-sm font-medium text-ink">{c.label}</p>
-          <p className="mt-3 text-sm leading-relaxed text-ink-3">{c.body}</p>
+          <p className="mt-3 flex items-baseline gap-1">
+            <span
+              className={`font-mono text-5xl font-semibold tracking-tight ${
+                plan.tone === "accent" ? "text-accent" : "text-ink"
+              }`}
+            >
+              {plan.figure}
+            </span>
+            {plan.period && (
+              <span className="text-base font-medium text-ink-3">{plan.period}</span>
+            )}
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-ink-2">
+            {plan.description}
+          </p>
+
+          <div className="mt-6 border-t border-white/5 pt-6">
+            <ul className="space-y-3">
+              {plan.features.map((feature) => (
+                <li key={feature} className="flex items-start gap-2.5 text-sm text-ink-2">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-gain" strokeWidth={2.5} />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
         </motion.div>
       ))}
     </motion.div>

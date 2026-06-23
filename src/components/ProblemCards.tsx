@@ -2,19 +2,19 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 const PIECES = [
   {
-    name: "Build a strategy",
+    name: "Investing is a solo activity",
     stat: "01",
-    body: "Powerful tools exist to design and test trading strategies — but they stop at the chart. Nothing runs.",
+    body: "Great strategies live in private portfolios and spreadsheets. Most investors never discover what actually works.",
   },
   {
-    name: "See who's winning",
+    name: "No way to follow the best",
     stat: "02",
-    body: "Communities surface ideas and track records — but you still have to place every trade yourself.",
+    body: "There is no transparent way to follow, learn from, or invest alongside successful investors. Track records stay hidden.",
   },
   {
-    name: "Execute automatically",
+    name: "Discovery is broken",
     stat: "03",
-    body: "Brokerages can run automated orders — with no marketplace of proven strategies to draw from.",
+    body: "No feed, no rankings, no social proof. Finding a proven strategy means starting from scratch, every time.",
   },
 ];
 
@@ -66,8 +66,8 @@ export default function ProblemCards() {
         transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         className="mt-12 text-center font-serif text-2xl font-semibold text-ink sm:text-3xl"
       >
-        Meridian is the first to{" "}
-        <span className="text-gradient-gold">combine all three.</span>
+        Meridian makes investing{" "}
+        <span className="text-gradient-gold">social by default.</span>
       </motion.p>
     </div>
   );

@@ -10,12 +10,13 @@ import TallyPopup from "../components/TallyPopup.astro";
 import Reveal from "../components/Reveal.tsx";
 
 const marqueeItems = [
-  "Strategy builder",
-  "Ranked strategy marketplace",
-  "Live execution",
-  "Performance-only fees",
-  "Paper trading mode",
-  "US equities & crypto",
+  "Follow top investors",
+  "3,200+ strategies shared",
+  "Public performance rankings",
+  "Investing communities",
+  "Transparent track records",
+  "Copy with one click",
+  "Creator leaderboards",
 ];
 ---
 
@@ -76,15 +77,38 @@ const marqueeItems = [
       </div>
     </section>
 
-    <!-- ===================== 3 · PROBLEM / GAP ========================= -->
+    <!-- ================= 3 · DIFFERENTIATOR CALLOUT ==================== -->
+    <section class="mx-auto max-w-6xl px-6 py-24 sm:py-32">
+      <Reveal client:visible>
+        <div class="mx-auto max-w-2xl text-center">
+          <p
+            class="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-accent"
+          >
+            The difference
+          </p>
+          <h2
+            class="font-serif text-3xl font-semibold tracking-tight text-ink sm:text-4xl"
+          >
+            Strategies are social objects, not private tools
+          </h2>
+          <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-ink-2 sm:text-lg">
+            On Meridian, strategies are shared, ranked, and discussed openly.
+            Follow creators, join communities, and see live leaderboards of the
+            best-performing strategies in real time. The best strategies spread
+            through the network, and anyone can copy, remix, or improve them.
+          </p>
+        </div>
+      </Reveal>
+    </section>
+
+    <!-- ===================== 3.5 · PROBLEM / GAP ======================= -->
     <section class="mx-auto max-w-6xl px-6 py-24 sm:py-32">
       <Reveal client:visible>
         <div class="mx-auto max-w-2xl text-center">
           <h2
             class="font-serif text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl"
           >
-            Everyone owns a piece.<br class="hidden sm:block" /> Nobody has the
-            whole picture.
+            The best strategies<br class="hidden sm:block" /> stay hidden.
           </h2>
         </div>
       </Reveal>
@@ -101,18 +125,129 @@ const marqueeItems = [
           <p
             class="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-accent"
           >
-            Features
+            The social layer
           </p>
           <h2
             class="font-serif text-3xl font-semibold tracking-tight text-ink sm:text-4xl"
           >
-            Everything in one place
+            A social network built for investing
           </h2>
         </div>
       </Reveal>
 
       <div class="mt-14">
         <Features client:visible />
+      </div>
+    </section>
+
+    <!-- ======================== 4.5 · CREATORS ========================= -->
+    <section class="mx-auto max-w-6xl px-6 py-24 sm:py-32">
+      <Reveal client:visible>
+        <div class="mx-auto max-w-2xl text-center">
+          <p
+            class="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-accent"
+          >
+            For creators
+          </p>
+          <h2
+            class="font-serif text-3xl font-semibold tracking-tight text-ink sm:text-4xl"
+          >
+            Build a following through performance
+          </h2>
+          <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-ink-2 sm:text-lg">
+            Publish strategies, build a reputation, and gain followers. On
+            Meridian, your track record speaks for itself. Investing knowledge
+            becomes a social asset, and creators build reputation and influence
+            through performance.
+          </p>
+        </div>
+      </Reveal>
+
+      <div class="mx-auto mt-12 grid max-w-4xl gap-5 sm:grid-cols-3">
+        <Reveal client:visible>
+          <div class="glass-soft rounded-2xl p-6">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/20 text-xs font-bold text-accent">NO</div>
+              <div class="min-w-0">
+                <p class="truncate text-sm font-semibold text-ink">Naomi Okafor</p>
+                <p class="text-xs text-ink-3">3.1k followers</p>
+              </div>
+            </div>
+            <div class="mt-4 flex items-baseline justify-between">
+              <p class="font-mono text-2xl font-semibold text-gain">+47.2%</p>
+              <span class="rounded-full bg-warn-soft px-2 py-0.5 text-[10px] font-semibold uppercase text-warn">med risk</span>
+            </div>
+            <p class="mt-1 text-xs text-ink-3">Adaptive Momentum · 5d return</p>
+          </div>
+        </Reveal>
+        <Reveal client:visible delay={0.1}>
+          <div class="glass-soft rounded-2xl p-6">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-signal/20 text-xs font-bold text-signal">DR</div>
+              <div class="min-w-0">
+                <p class="truncate text-sm font-semibold text-ink">Daniel Reyes</p>
+                <p class="text-xs text-ink-3">2.4k followers</p>
+              </div>
+            </div>
+            <div class="mt-4 flex items-baseline justify-between">
+              <p class="font-mono text-2xl font-semibold text-gain">+34.6%</p>
+              <span class="rounded-full bg-loss-soft px-2 py-0.5 text-[10px] font-semibold uppercase text-loss">high risk</span>
+            </div>
+            <p class="mt-1 text-xs text-ink-3">Volatility Harvest · 30d return</p>
+          </div>
+        </Reveal>
+        <Reveal client:visible delay={0.2}>
+          <div class="glass-soft rounded-2xl p-6">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gain/20 text-xs font-bold text-gain">PA</div>
+              <div class="min-w-0">
+                <p class="truncate text-sm font-semibold text-ink">Priya Anand</p>
+                <p class="text-xs text-ink-3">1.7k followers</p>
+              </div>
+            </div>
+            <div class="mt-4 flex items-baseline justify-between">
+              <p class="font-mono text-2xl font-semibold text-gain">+21.8%</p>
+              <span class="rounded-full bg-warn-soft px-2 py-0.5 text-[10px] font-semibold uppercase text-warn">med risk</span>
+            </div>
+            <p class="mt-1 text-xs text-ink-3">Sector Rotation · 30d return</p>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+
+    <!-- =================== 4.75 · TRUST & TRANSPARENCY ================= -->
+    <section class="mx-auto max-w-6xl px-6 py-24 sm:py-32">
+      <Reveal client:visible>
+        <div class="mx-auto max-w-2xl text-center">
+          <p
+            class="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-accent"
+          >
+            Trust
+          </p>
+          <h2
+            class="font-serif text-3xl font-semibold tracking-tight text-ink sm:text-4xl"
+          >
+            Performance is public
+          </h2>
+          <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-ink-2 sm:text-lg">
+            Every strategy is evaluated using transparent performance data.
+            Review returns, risk metrics, drawdowns, consistency, and community
+            adoption before deciding to follow or copy a strategy.
+          </p>
+        </div>
+      </Reveal>
+
+      <div class="mx-auto mt-12 grid max-w-3xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {["Verified performance history", "Risk-adjusted metrics", "Public creator leaderboards", "Transparent strategy rankings", "Follower and adoption counts", "No self-reported returns"].map((item) => (
+          <Reveal client:visible>
+            <div class="glass-soft flex items-center gap-3 rounded-xl px-5 py-4">
+              <svg class="h-5 w-5 shrink-0 text-gain" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+              </svg>
+              <span class="text-sm font-medium text-ink-2">{item}</span>
+            </div>
+          </Reveal>
+        ))}
       </div>
     </section>
 
@@ -131,7 +266,7 @@ const marqueeItems = [
           <h2
             class="font-serif text-3xl font-semibold tracking-tight text-ink sm:text-4xl"
           >
-            From strategy to execution in minutes
+            From discovery to execution
           </h2>
         </div>
       </Reveal>
@@ -145,14 +280,19 @@ const marqueeItems = [
     <section id="pricing" class="mx-auto max-w-6xl px-6 py-24 sm:py-32">
       <Reveal client:visible>
         <div class="mx-auto max-w-2xl text-center">
+          <p
+            class="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-accent"
+          >
+            Pricing
+          </p>
           <h2
             class="font-serif text-3xl font-semibold tracking-tight text-ink sm:text-4xl"
           >
-            You only pay when you profit
+            The network is free. Power tools are not.
           </h2>
           <p class="mt-4 text-base leading-relaxed text-ink-2">
-            No subscriptions. No monthly fees. No fees when strategies lose
-            money. A 10% performance fee, only on realized profits.
+            Full access to social features, strategy discovery, and paper trading. Always free.
+            Upgrade to Pro for live trading, advanced analytics, and unlimited experimentation.
           </p>
         </div>
       </Reveal>
@@ -177,11 +317,12 @@ const marqueeItems = [
           <h2
             class="font-serif text-4xl font-semibold tracking-tight text-ink sm:text-5xl"
           >
-            Be first to trade <span class="text-gradient-gold">smarter.</span>
+            Invest alongside the <span class="text-gradient-gold">best.</span>
           </h2>
           <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-2 sm:text-lg">
-            Meridian is currently in closed beta. Join the waitlist and we&rsquo;ll
-            be in touch.
+            Meridian is the social network where investing strategies are shared,
+            ranked, discovered, and executed in one place. Join the waitlist for
+            early access.
           </p>
         </Reveal>
 
@@ -224,7 +365,7 @@ const marqueeItems = [
               </svg>
               Meridian
             </a>
-            <p class="mt-3 text-sm text-ink-2">Trade smarter. Together.</p>
+            <p class="mt-3 text-sm text-ink-2">The social network for investing strategies.</p>
           </div>
 
           <nav class="flex flex-col gap-3 sm:flex-row sm:gap-8" aria-label="Legal">
